@@ -29,7 +29,7 @@ public class CursorInvisibleRobot {
           System.exit(1);
         }
 
-        pressed = false;
+        clicked = false;
         screen = robot.createScreenCapture(screenRect);
         for (int y = 0; y < screen.getHeight(); y++) {
           for (int x = 0; x < screen.getWidth(); x++) {
@@ -58,6 +58,6 @@ public class CursorInvisibleRobot {
   }
 
   static boolean isBlack(int r, int g, int b) {
-    return r == 0 && g == 0 && b == 0; 
+    return r == 0 && g == 0 && b == 0;
   }
 }
