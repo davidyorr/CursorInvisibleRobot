@@ -38,16 +38,13 @@ public class CursorInvisibleRobot {
             g = (color & 0x0000ff00) >> 8;
             b = color & 0x000000ff;
 
-            if (prevBlack && !isBlack(r,g,b)) {
-              if (r > 80 && g > 80 && b > 80 &&
-                  r < 100 && g < 100 && b < 100 &&
-                  !clicked) {
-                robot.mouseMove(x,y);
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                clicked = true;
-                clicks++;
-              }
+
+            if (prevBlack && isGrey(r,g,b) && !clicked) {
+              robot.mouseMove(x,y);
+              robot.mousePress(InputEvent.BUTTON1_MASK);
+              robot.mouseRelease(InputEvent.BUTTON1_MASK);
+              clicked = true;
+              clicks++;
             }
 
             prevBlack = isBlack(r,g,b);
@@ -59,5 +56,9 @@ public class CursorInvisibleRobot {
 
   static boolean isBlack(int r, int g, int b) {
     return r == 0 && g == 0 && b == 0;
+  }
+
+  static boolean isGrey(int r, int g, int b) {
+    return r > 80 && r < 100 && g == r && b == r;
   }
 }
